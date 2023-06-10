@@ -1,5 +1,8 @@
 // not sure if i should have global variables
 
+let playerWins = 0;
+let computerWins = 0;
+
 function getComputerChoice() {
     let option;
 
@@ -32,10 +35,33 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper") 
     ) {
-            return `You win! ${playerSelection} beats ${computerSelection}` 
+        playerWins++
+        return `You win! ${playerSelection} beats ${computerSelection}` 
     } else {
+        computerWins++
         return `You lose! ${computerSelection} beats ${playerSelection}`
     }
 }
 
-console.log(playRound('ROCK'))
+function game() {
+    let userInput;
+
+    for (let i = 1; i <= 5; i++) {
+        do {
+            userInput = prompt("Choose one of the following options: rock, paper, or scissors");
+          } while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors");
+          
+          console.log("You chose: " + userInput);
+        
+        console.log(playRound(userInput))
+    }
+    if (playerWins == computerWins) {
+        console.log(`Tie game! Final score: ${playerWins} to ${computerWins}`)
+    } else if (playerWins >= computerWins) {
+        console.log(`You won! Final score: ${playerWins} to ${computerWins}`)
+    } else {
+        console.log(`You lost! Final score: ${playerWins} to ${computerWins}`)
+    }
+}
+
+game();
