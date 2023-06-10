@@ -18,13 +18,11 @@ function getComputerChoice() {
             break;
     }
 
-    console.log(option)
     return option
 }
 
-function playRound(playerSelection, computerSelection) {
-    computerSelection = getComputerChoice
-
+function playRound(playerSelection, computerSelection = getComputerChoice()) {
+    computerSelection = computerSelection.toLowerCase();
     playerSelection = playerSelection.toLowerCase();
 
     if (playerSelection === computerSelection) {
@@ -38,6 +36,6 @@ function playRound(playerSelection, computerSelection) {
     } else {
         return `You lose! ${computerSelection} beats ${playerSelection}`
     }
-    }
 }
-getComputerChoice();
+
+console.log(playRound('ROCK'))
