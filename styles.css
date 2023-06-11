@@ -73,18 +73,4 @@ body {
     justify-content: center;
   }
   
-  @keyframes animatedBorder {
-    0% {
-      border-color: white;
-    }
-    50% {
-      border-color: red;
-    }
-    100% {
-      border-color: white;
-    }
-  }
   
-  .animated {
-    animation: animatedBorder 2s infinite;
-  }
