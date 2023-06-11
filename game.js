@@ -43,25 +43,67 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
     }
 }
 
-function game() {
-    let userInput;
+const playerSign = document.getElementById('playerSign')
+const computerSign = document.getElementById('computerSign')
+const rockbtn = document.getElementById('rockbtn')
+const paperbtn = document.getElementById('paperbtn')
+const scissorsbtn = document.getElementById('scissorsbtn')
+const p1Score = document.querySelector('#p1score');
+const p2Score = document.querySelector('#p2score');
+const gameStatus = document.querySelector('#status')
 
-    for (let i = 1; i <= 5; i++) {
-        do {
-            userInput = prompt("Choose one of the following options: rock, paper, or scissors");
-          } while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors");
-          
-          console.log("You chose: " + userInput);
-        
-        console.log(playRound(userInput))
+rockbtn.addEventListener('click', () => handleClick('rock'))
+paperbtn.addEventListener('click', () => handleClick('paper'))
+scissorsbtn.addEventListener('click', () => handleClick('scissors'))
+
+function updateChoices(playerSelection, computerSelection) {
+    switch(playerSelection) {
+        case 'rock':
+            playerSign.textContent = '✊'
+            break
+          case 'paper':
+            playerSign.textContent = '✋'
+            break
+          case 'scissors':
+            playerSign.textContent = '✌'
+            break
     }
-    if (playerWins == computerWins) {
-        console.log(`Tie game! Final score: ${playerWins} to ${computerWins}`)
-    } else if (playerWins >= computerWins) {
-        console.log(`You won! Final score: ${playerWins} to ${computerWins}`)
-    } else {
-        console.log(`You lost! Final score: ${playerWins} to ${computerWins}`)
-    }
+
+    switch (computerSelection) {
+        case 'rock':
+          computerSign.textContent = '✊'
+          break
+        case 'paper':
+          computerSign.textContent = '✋'
+          break
+        case 'scissors':
+          computerSign.textContent = '✌'
+          break
+      }
 }
 
-game();
+function updateScore() {
+    p1Score.textContent = `Player Score: ${playerWins}`
+    p2Score.textContent = `Opponent Score: ${computerWins}`
+}
+
+
+function handleClick(playerSelection) {
+    const computerSelection = getComputerChoice();
+    gameStatus.textContent = `${playRound(playerSelection, computerSelection)}`
+    updateChoices(playerSelection, computerSelection)
+    updateScore()
+    checkGameOver();   
+}
+
+function checkGameOver() {
+    if (playerWins === 5 || computerWins === 5) {
+      const restart = confirm('Game over! Do you want to restart?');
+      if (restart) {
+        playerWins = 0;
+        computerWins = 0;
+        updateScore();
+        gameStatus.textContent = '';
+      }
+    }
+  }

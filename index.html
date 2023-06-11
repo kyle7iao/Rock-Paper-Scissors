@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.cdnfonts.com/css/arcade-classic" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <h1 class="title">ROCK / PAPER / SCISSORS</h1>
+    </header>
+
+    <main>
+        <div class="instructions">
+            <h2>Choose your move</h2>
+            <p>First to 5 wins takes the game</p>
+        </div>
+
+        <div class = "scoreboard">
+            <div>
+                <div class="sign" id="playerSign">❔</div>
+                <p id="p1score">Player Score: 0</p>
+            </div>
+            <div>
+                <div class="sign" id="computerSign">❔</div>
+                <p id="p2score">Opponent Score: 0</p>
+            </div>
+        </div>
+        <p id="status"></p>
+        <div class = "buttons">
+            <button id="rockbtn">✊</button>
+            <button id="paperbtn">✋</button>
+            <button id="scissorsbtn">✌</button>
+        </div>
+    </main>
+
     <script src="game.js"></script>
 </body>
 </html>
