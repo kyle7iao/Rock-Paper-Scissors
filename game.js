@@ -83,27 +83,31 @@ function updateChoices(playerSelection, computerSelection) {
 }
 
 function updateScore() {
-    p1Score.textContent = `Player Score: ${playerWins}`
-    p2Score.textContent = `Opponent Score: ${computerWins}`
+  p1Score.textContent = `Player Score: ${playerWins}`
+  p2Score.textContent = `Opponent Score: ${computerWins}`
 }
 
 
-function handleClick(playerSelection) {
-    const computerSelection = getComputerChoice();
-    gameStatus.textContent = `${playRound(playerSelection, computerSelection)}`
-    updateChoices(playerSelection, computerSelection)
-    updateScore()
-    checkGameOver();   
+function handleClick(playerSelection) {  
+  const computerSelection = getComputerChoice();
+  gameStatus.textContent = `${playRound(playerSelection, computerSelection)}`;
+  updateChoices(playerSelection, computerSelection);
+  updateScore();
+  checkGameOver(); 
 }
 
 function checkGameOver() {
-    if (playerWins === 5 || computerWins === 5) {
-      const restart = confirm('Game over! Do you want to restart?');
+  if (playerWins === 5 || computerWins === 5) {
+    let winner;
+    (playerWins === 5) ? winner = 'You' : winner = 'The computer'
+    setTimeout(() => { //set timeout to let UI update before prompt
+      const restart = confirm(`Game over! ${winner} won. Do you want to play again?`);
       if (restart) {
         playerWins = 0;
         computerWins = 0;
         updateScore();
-        gameStatus.textContent = '';
+        gameStatus.textContent = 'Pick a move to begin the game';
       }
-    }
+    }, 1);
   }
+}
