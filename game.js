@@ -106,7 +106,8 @@ function checkGameOver() {
         playerWins = 0;
         computerWins = 0;
         updateScore();
-        gameStatus.textContent = 'Pick a move to begin the game';
+        gameStatus.textContent = 'Pick a move to begin the game';            playerSign.textContent = '?'
+        computerSign.textContent = '?'
       }
     }, 1);
   }
